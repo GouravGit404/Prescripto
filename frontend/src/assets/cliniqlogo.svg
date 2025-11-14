@@ -1,0 +1,7 @@
+<svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="140" height="32" rx="4" fill="white"/>
+    <text x="10" y="22" font-family="Arial" font-size="20" font-weight="bold" fill="#5F6FFF">
+        CliniQ
+    </text>
+    <path d="M120 8h4v16h-4zM114 16v-4h16v4z" fill="#5F6FFF"/>
+</svg>
