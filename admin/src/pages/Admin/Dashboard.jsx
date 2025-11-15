@@ -12,10 +12,7 @@ const Dashboard = () => {
   const { slotDateFormat } = useContext(AppContext);
 
   const handleCancel = async (appointmentId) => {
-    // Wait for the cancel API call to complete
     await cancelAppointment(appointmentId);
-
-    // Now, manually refetch the dashboard data
     getDashData();
   };
 
@@ -23,7 +20,16 @@ const Dashboard = () => {
     if (admintoken) {
       getDashData();
     }
-  }, [admintoken]);
+  }, [admintoken, getDashData]); 
+
+
+if (!dashData) {
+  return (
+    <div className="m-5 p-5 text-gray-600">
+      <p>Loading dashboard data...</p>
+    </div>
+  );
+}
 
   return (
     dashData && (
@@ -83,17 +89,19 @@ const Dashboard = () => {
                   </p>
                 </div>
 
-               {item.cancelled ? (
-                             <p className="text-red-400 text-xs font-medium">Cancelled</p>
-                           ) : item.isCompleted ? (
-                             <p className="text-green-500 text-xs font-medium">Completed</p>
-                           ) : (
-                             <img
-                               onClick={() => cancelAppointment(item._id)}
-                               className="w-10 cursor-pointer"
-                               src={assets.cancel_icon}
-                             />
-                           )}
+                {item.cancelled ? (
+                  <p className="text-red-400 text-xs font-medium">Cancelled</p>
+                ) : item.isCompleted ? (
+                  <p className="text-green-500 text-xs font-medium">
+                    Completed
+                  </p>
+                ) : (
+                  <img
+                    onClick={() => handleCancel(item._id)}
+                    className="w-10 cursor-pointer"
+                    src={assets.cancel_icon}
+                  />
+                )}
               </div>
             ))}
           </div>

@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [state, setState] = useState("Sign Up");
 
@@ -13,45 +12,43 @@ const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
-  const {backendUrl,token,setToken} = useContext(AppContext);
+  const { backendUrl, token, setToken } = useContext(AppContext);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
 
     try {
-
-      if(state === 'Sign Up'){
-        const {data} = await axios.post(backendUrl + '/api/user/register-user', {name,email,password});
-        if(data.success){
-          toast.success(data.message)
-          localStorage.setItem('token',data.token);
-          setToken(data.token);
-          setState('Login');
-        }
-        else {
-          toast.error(data.message);
-        }
-      }
-
-      else {
-        const {data} = await axios.post(backendUrl + '/api/user/login-user', {email,password});
-        if(data.success){
+      if (state === "Sign Up") {
+        const { data } = await axios.post(
+          backendUrl + "/api/user/register-user",
+          { name, email, password }
+        );
+        if (data.success) {
           toast.success(data.message);
-          localStorage.setItem('token',data.token);
+          sessionStorage.setItem("token", data.token);
           setToken(data.token);
+          setState("Login");
+        } else {
+          toast.error(data.message);
         }
-        else {
+      } else {
+        const { data } = await axios.post(backendUrl + "/api/user/login-user", {
+          email,
+          password,
+        });
+        if (data.success) {
+          toast.success(data.message);
+          sessionStorage.setItem("token", data.token);
+          setToken(data.token);
+        } else {
           toast.error(data.message);
         }
       }
-
-    } 
-    
-    catch (error) {
+    } catch (error) {
       toast.error(error.message);
     }
   };
-   
+
   useEffect(() => {
     if (token) {
       navigate("/");
@@ -141,3 +138,4 @@ const navigate = useNavigate();
 };
 
 export default Login;
+

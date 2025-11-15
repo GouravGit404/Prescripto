@@ -45,7 +45,7 @@ const updateUserProfileData = async () => {
       <div className="max-w-lg flex flex-col text-sm gap-4 border border-gray-300 p-4 rounded-md m-auto">
 
         {isEdit ? 
-          // Wrap these two elements in a Fragment
+      
           <>
             <label htmlFor="image">
               <div className="inline-block relative cursor-pointer">

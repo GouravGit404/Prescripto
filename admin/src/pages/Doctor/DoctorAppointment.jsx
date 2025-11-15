@@ -11,11 +11,11 @@ const {doctortoken,appointments,setAppointments,getAppointments, completeAppoint
 
 const {calculateAge,slotDateFormat, currency} = useContext(AppContext)
 
-useEffect(()=>{
-if(doctortoken){
-    getAppointments()
-}
-},[doctortoken])
+useEffect(() => {
+  if (doctortoken) {
+    getAppointments();
+  }
+}, [doctortoken, getAppointments]);
 
 
   return (
@@ -33,7 +33,7 @@ if(doctortoken){
           <p>Action</p>
         </div>
 
-        {appointments.reverse().map((item, index) => (
+        {[...appointments].reverse().map((item, index) => (
           <div
             className="flex flex-wrap justify-between max-sm:gap-5 max-sm:text-base sm:grid grid-cols-[0.5fr_2fr_1fr_1fr_2fr_1fr_1fr] gap-1 items-center text-gray-500 py-3 px-6 border-b border-gray-200 hover:bg-gray-50"
             key={index}
@@ -74,3 +74,11 @@ if(doctortoken){
 }
 
 export default DoctorAppointment
+
+
+
+
+
+
+
+

@@ -6,16 +6,40 @@ import { assets } from "../../assets/assets";
 import { AppContext } from "../../context/AppContext";
 
 const DoctorDashboard = () => {
-const { dashData, setDashData, getDashData, doctortoken, completeAppointment, cancelAppointment } = useContext(DoctorContext);
-  const { currency,slotDateFormat } = useContext(AppContext);
+  const {
+    dashData,
+    getDashData,
+    doctortoken,
+    completeAppointment,
+    cancelAppointment,
+  } = useContext(DoctorContext);
+  const { currency, slotDateFormat } = useContext(AppContext);
 
   useEffect(() => {
     if (doctortoken) {
       getDashData();
     }
-  }, [doctortoken]);
+  }, [doctortoken, getDashData]);
 
-  return dashData &&  (
+  const handleCancel = async (appointmentId) => {
+    await cancelAppointment(appointmentId);
+    getDashData();
+  };
+
+  const handleComplete = async (appointmentId) => {
+    await completeAppointment(appointmentId);
+    getDashData();
+  };
+
+  if (!dashData) {
+    return (
+      <div className="m-5 p-5 text-gray-600">
+        <p>Loading dashboard data...</p>
+      </div>
+    );
+  }
+
+  return (
     <div className="m-5">
       <div className="flex gap-5 flex-wrap">
         <div className="flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-103 transition-all">
@@ -64,21 +88,30 @@ const { dashData, setDashData, getDashData, doctortoken, completeAppointment, ca
               <img className="rounded-full w-12" src={item.userData.image} />
 
               <div className="flex-1 text-sm">
-                <p className="text-gray-800 font-medium">{item.userData.name}</p>
+                <p className="text-gray-800 font-medium">
+                  {item.userData.name}
+                </p>
                 <p className="text-gray-600">{slotDateFormat(item.slotDate)}</p>
               </div>
 
-             
-                               {
-                                 item.cancelled 
-                                 ? <p className='text-red-400 text-xs font-medium'>Cancelled</p>
-                                 : item.isCompleted 
-                                   ? <p className='text-green-400 text-xs font-medium'>Completed</p>
-                                   :   <div className='flex gap-1'>
-                           <img onClick={()=>cancelAppointment(item._id)} className="w-10 cursor-pointer" src={assets.cancel_icon} />
-                           <img className="w-10 cursor-pointer" onClick={()=>completeAppointment(item._id)} src={assets.tick_icon} />
-                                       </div>
-                               }
+              {item.cancelled ? (
+                <p className="text-red-400 text-xs font-medium">Cancelled</p>
+              ) : item.isCompleted ? (
+                <p className="text-green-400 text-xs font-medium">Completed</p>
+              ) : (
+                <div className="flex gap-1">
+                  <img
+                    onClick={() => handleCancel(item._id)}
+                    className="w-10 cursor-pointer"
+                    src={assets.cancel_icon}
+                  />
+                  <img
+                    className="w-10 cursor-pointer"
+                    onClick={() => handleComplete(item._id)}
+                    src={assets.tick_icon}
+                  />
+                </div>
+              )}
             </div>
           ))}
         </div>

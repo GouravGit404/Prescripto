@@ -9,8 +9,8 @@ const DoctorContextProvider = (props) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const [doctortoken, setDoctorToken] = useState(
-    localStorage.getItem("doctortoken")
-      ? localStorage.getItem("doctortoken")
+    sessionStorage.getItem("doctortoken")
+      ? sessionStorage.getItem("doctortoken")
       : ""
   );
 

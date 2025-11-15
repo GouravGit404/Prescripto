@@ -9,13 +9,19 @@ const NavBar = () => {
     const {doctortoken,setDoctorToken} = useContext(DoctorContext);
     const navigate = useNavigate();
 
-    const logout = () => {
-      navigate('/');
-      admintoken && setAdminToken('');
-      admintoken && localStorage.removeItem('admintoken');
-      doctortoken && setDoctorToken("");
-      doctortoken && localStorage.removeItem("doctortoken");
-    }
+
+const logout = () => {
+  navigate("/");
+  setAdminToken("");
+  setDoctorToken("");
+  sessionStorage.removeItem("admintoken");
+  sessionStorage.removeItem("doctortoken");
+  sessionStorage.removeItem("token");
+  localStorage.removeItem("doctortoken")
+  localStorage.removeItem("admintoken")
+};
+
+
     return (
       <div className="sticky top-0 z-50 flex justify-between items-center px-4 sm:px-10 py-3 border-b border-neutral-100 bg-white">
         <div className="flex items-center gap-2 text-xs">

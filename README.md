@@ -1,6 +1,6 @@
 # Prescripto 🩺
 
-Prescripto is a full-stack (MERN) web application designed to streamline the doctor appointment booking process. It provides a seamless and intuitive interface for patients, doctors, and administrators.
+Prescripto is a full-stack (MERN) web application designed to streamline the doctor appointment booking process. It provides a modern, seamless and intuitive interface for patients, doctors, and administrators.
 
 
 
@@ -15,7 +15,7 @@ Prescripto is a full-stack (MERN) web application designed to streamline the doc
 * **Dynamic Slot Booking:** A complete scheduling system where patients can select a date and an available time slot.
 * **Payment Integration:** Securely process appointment fees using Razorpay (in test mode).
 * **Profile Management:** Users (patients and doctors) can update their profile information, including uploading a new profile picture.
-* **Dashboard & Stats:** Both admin and doctor dashboards display key statistics like total appointments, patient count, and earnings.
+* **Dashboard & Stats:** Both admin and doctor dashboards display key statistics like total appointments, patient count, and earnings in doctor dashboard.
 * **Image Uploads:** User and doctor images are handled and stored using Cloudinary.
 
 ---
@@ -90,4 +90,17 @@ To get a local copy up and running, follow these simple steps.
     ```sh
     cd ../frontend
     npm run dev
-    ```
+
+7.   **# ADMIN CREDENTIALS (Encoded)**
+      ```
+      email : admin@prescripto.com
+      password : qwerty123
+       ```
+
+8.   **# DOCTOR CREDENTIALS (Encoded)**
+      ```
+      email : doctorfirstname@prescripto.com
+      password : qwerty123
+       ```
+ 
+

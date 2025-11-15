@@ -34,10 +34,10 @@ app.use('/api/doctor', doctorRouter);
 app.use('/api/user', userRouter);
 
 
-// testing ednpoint
+// testing endpoint
 
 app.get('/',(req,res)=>{
-res.send('API Working Greatly')
+res.send('API Working')
 })
 
 app.listen(port, ()=>console.log("Server Started at port",port));
