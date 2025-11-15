@@ -2,7 +2,10 @@
 
 Prescripto is a full-stack (MERN) web application designed to streamline the doctor appointment booking process. It provides a modern, seamless and intuitive interface for patients, doctors, and administrators.
 
+## ✨ Links : 
 
+- Frontend: [Prescripto (Frontend)](https://prescripto-eight-blue.vercel.app)
+- Admin: [Prescripto Admin](https://prescripto-admin-tan.vercel.app/)
 
 ---
 
@@ -102,5 +105,5 @@ To get a local copy up and running, follow these simple steps.
       email : doctorfirstname@prescripto.com
       password : qwerty123
        ```
- 
+
 
